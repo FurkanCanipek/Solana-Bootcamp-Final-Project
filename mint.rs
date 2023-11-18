@@ -50,7 +50,7 @@ pub fn mint(
 ) -> ProgramResult {
     tree.data.leaf_color = leafColor;
     tree.data.lifespan = lifespan;
-    tree.data.age = age+10;
+    tree.data.age = age;
     tree.data.leaf_pattern= leafPattern;
     tree.data.wood_color= woodColor;
     tree.data.short_description= shortDescription;
