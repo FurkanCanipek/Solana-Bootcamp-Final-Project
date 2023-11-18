@@ -43,7 +43,7 @@ pub fn mint(
 	owner: &AccountInfo,
 	leafColor: String,
 	lifespan: u32,
-	//age: u32,
+	age: u32,
 	leafPattern: String,
 	woodColor: String,
 	shortDescription: String,
