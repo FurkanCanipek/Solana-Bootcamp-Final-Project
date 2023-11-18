@@ -36,7 +36,7 @@ pub fn transfer(
 	destination: &AccountInfo,
 	authority: &AccountInfo,
 ) -> ProgramResult {
-    tree.data.age =20;
+    tree.data.age +=10;
     tree.data.assoc_account = Some(*destination.key);
 
 // Create the ATA account for new owner if it hasn't been created
