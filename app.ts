@@ -5,6 +5,8 @@ import * as os from "os";
 import {
     advanceAgeSendAndConfirm,
     burnSendAndConfirm,
+    resetAgeSendAndConfirm,
+    reverseAgeSendAndConfirm,
     CslSplTokenPDAs,
     deriveTreeMetadataPDA,
     getTreeMetadata,
@@ -113,7 +115,7 @@ async function main(feePayer: Keypair) {
         assocTokenAccount: johnDoeATA,
         leafColor: "Yellow",
         lifespan: 45,
-        age: 10,
+        age: 8,
         leafPattern: "pointed oval",
         woodColor: "white",
         shortDescription: "A birch has smooth, resinous, varicoloured or white bark, marked by horizontal pores (lenticels), which usually peels horizontally in thin sheets, especially on young trees. On older trunks the thick, deeply furrowed bark breaks into irregular plates." ,
@@ -133,3 +135,91 @@ async function main(feePayer: Keypair) {
     console.info("+==== Mint ====+");
     console.info(mintAccount);
 
+    
+     
+    
+    
+
+    /**
+     * Get the Tree Metadata
+     */
+    let Tree = await getTreeMetadata(TreePub);
+    console.info("+==== Tree Metadata ====+");
+    console.info(Tree);
+    console.assert(Tree!.assocAccount!.toBase58(), johnDoeATA.toBase58());
+
+   
+    
+    
+
+    /**
+     * Transfer John Doe's NFT to Jane Doe Wallet (technically, the Associated Token Account)
+     */
+    console.info("+==== Transferring... ====+");
+    await transferSendAndConfirm({
+        wallet: janeDoeWallet.publicKey,
+        assocTokenAccount: janeDoeATA,
+        mint: mint.publicKey,
+        source: johnDoeATA,
+        destination: janeDoeATA,
+        signers: {
+            feePayer: feePayer,
+            funding: feePayer,
+            authority: johnDoeWallet,
+        },
+    });
+    console.info("+==== Transferred ====+");
+
+    /**
+     * Get the minted token
+     */
+    mintAccount = await getMint(connection, mint.publicKey);
+    console.info("+==== Mint ====+");
+    console.info(mintAccount);
+
+    /**
+     * Get the Tree Metadata
+     */
+    Tree = await getTreeMetadata(TreePub);
+    console.info("+==== Tree Metadata ====+");
+    console.info(Tree);
+    console.assert(Tree!.assocAccount!.toBase58(), janeDoeATA.toBase58());
+
+
+   
+
+
+
+    /**
+     * Burn the NFT
+     */
+    console.info("+==== Burning... ====+");
+    await burnSendAndConfirm({
+        mint: mint.publicKey,
+        wallet: janeDoeWallet.publicKey,
+        signers: {
+            feePayer: feePayer,
+            owner: janeDoeWallet,
+        },
+    });
+    console.info("+==== Burned ====+");
+
+    /**
+     * Get the minted token
+     */
+    mintAccount = await getMint(connection, mint.publicKey);
+    console.info("+==== Mint ====+");
+    console.info(mintAccount);
+
+    /**
+     * Get the Tree Metadata
+     */
+    Tree = await getTreeMetadata(TreePub);
+    console.info("+==== Tree Metadata ====+");
+    console.info(Tree);
+    console.assert(typeof Tree!.assocAccount, "undefined");
+}
+
+fs.readFile(path.join(os.homedir(), ".config/solana/id.json")).then((file) =>
+    main(Keypair.fromSecretKey(new Uint8Array(JSON.parse(file.toString())))),
+);
