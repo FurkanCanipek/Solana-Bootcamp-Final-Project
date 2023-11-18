@@ -3,10 +3,7 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import * as os from "os";
 import {
-    advanceAgeSendAndConfirm,
     burnSendAndConfirm,
-    resetAgeSendAndConfirm,
-    reverseAgeSendAndConfirm,
     CslSplTokenPDAs,
     deriveTreeMetadataPDA,
     getTreeMetadata,
