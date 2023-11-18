@@ -27,7 +27,7 @@ pub fn burn(
 	owner: &AccountInfo,
 	wallet: &AccountInfo,
 ) -> ProgramResult {
-    
+    tree.data.age = 0;
     tree.data.assoc_account = None;
 
 
