@@ -19,6 +19,6 @@ pub fn reverse_age(
 	program_id: &Pubkey,
 	tree: &mut AccountPDA<TreeMetadata>,
 ) -> ProgramResult {
-    tree.data.age -=1;
+    tree.data.age -=10;
     Ok(())
 }
