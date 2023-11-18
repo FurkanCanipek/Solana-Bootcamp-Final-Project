@@ -43,14 +43,14 @@ pub fn mint(
 	owner: &AccountInfo,
 	leafColor: String,
 	lifespan: u32,
-	age: u32,
+	//age: u32,
 	leafPattern: String,
 	woodColor: String,
 	shortDescription: String,
 ) -> ProgramResult {
     tree.data.leaf_color = leafColor;
     tree.data.lifespan = lifespan;
-    tree.data.age = age;
+    tree.data.age = 0;
     tree.data.leaf_pattern= leafPattern;
     tree.data.wood_color= woodColor;
     tree.data.short_description= shortDescription;
