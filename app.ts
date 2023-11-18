@@ -168,7 +168,7 @@ async function main(feePayer: Keypair) {
             authority: johnDoeWallet,
         },
     });
-    console.info("+==== Transferred ====+");
+    console.info("+==== Transferred tree aged by 10 years ====+");
 
     /**
      * Get the minted token
@@ -202,7 +202,7 @@ async function main(feePayer: Keypair) {
             owner: janeDoeWallet,
         },
     });
-    console.info("+==== Burned ====+");
+    console.info("+==== Burned tree's age was reset ====+");
 
     /**
      * Get the minted token
