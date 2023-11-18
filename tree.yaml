@@ -39,19 +39,19 @@ types:
       - name: assoc_account
         type: rs:option<sol:pubkey>
 methods:
-  - name: advanceAge
+  - name: advance_age
     inputs:
       - name: tree
         type: TreeMetadata
         solana:
           attributes: [mut, init_if_needed]
-  - name: reverseAge
+  - name: reverse_age
     inputs:
       - name: tree
         type: TreeMetadata
         solana:
           attributes: [mut, init_if_needed]
-  - name: resetAge
+  - name: reset_age
     inputs:
       - name: tree
         type: TreeMetadata
