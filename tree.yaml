@@ -39,24 +39,6 @@ types:
       - name: assoc_account
         type: rs:option<sol:pubkey>
 methods:
-  - name: advance_age
-    inputs:
-      - name: tree
-        type: TreeMetadata
-        solana:
-          attributes: [mut, init_if_needed]
-  - name: reverse_age
-    inputs:
-      - name: tree
-        type: TreeMetadata
-        solana:
-          attributes: [mut, init_if_needed]
-  - name: reset_age
-    inputs:
-      - name: tree
-        type: TreeMetadata
-        solana:
-          attributes: [mut, init_if_needed]
   - name: mint
     uses:
       - csl_spl_token.initialize_mint2
